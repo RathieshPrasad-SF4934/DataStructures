@@ -7,7 +7,7 @@ class Program
 {
     public static void Main(string[] args)
     {
-        customDictionary<string,string> dictionary = new customDictionary<string, string>();
+        CustomDictionary<string,string> dictionary = new CustomDictionary<string, string>();
         dictionary.Add("SF1001","Rathiesh");
         dictionary.Add("SF1002","Rathiesh");
         dictionary.Add("SF1001","Rathiesh");
@@ -25,6 +25,21 @@ class Program
         // Console.WriteLine($"{dictionary["SF1004"]}");
         dictionary["SF1001"] = "Sairam";
         Console.WriteLine($"{dictionary["SF1001"]}");
+
+        // for(int i=0;i<dictionary.Count;i++)
+        // {
+        //     Console.WriteLine($"{dictionary[i]}");
+            
+        // }
+
+        // Dictionary<string,string>dict = new Dictionary<string, string>();
+        // dict.Add("one","rathiesh");
+        // dict.Add("two","sairam");
+        // for(int i=0;i<dict.Count;i++)
+        // {
+        //     Console.WriteLine($"{dict[i]}");
+            
+        // }
         
 
         

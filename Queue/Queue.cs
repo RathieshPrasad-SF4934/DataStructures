@@ -9,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace Queue
 {
-    public partial class customQueue<DataType>
+    public partial class CustomQueue<DataType>
     {
+        //states the head of the queue
         private int _head;
-
+        //states the position of tail of the queue
         private int _tail;
-
+        //states the number of elements int the queue
         private int _count;
-
+        //states the total capacity of the queue
         private int _capacity;
-
+        //method for returning the Count value
         public int Count
         {
             get
@@ -26,9 +27,26 @@ namespace Queue
                 return _count;
             }
         }
-
+        //Method for returning the capacity
         public int Capacity { get { return _capacity; } }
         private DataType[] _array;
+        //Default constructor for the Queue
+        public CustomQueue()
+        {
+            _capacity=4;
+            _array = new DataType[4];
+            _head = -1;
+            _tail = 0;
+        }
+        //Parameterized constructor for the queue
+        public CustomQueue(int size)
+        {
+            _capacity = size;
+            _array = new DataType[size];
+            _head = -1;
+            _tail = 0;
+        }
+        //Adding data into the queue
         public void Enqueue(DataType value)
         {
             if(_head==-1)
@@ -44,6 +62,7 @@ namespace Queue
             _count++;
 
         }
+        //resizing the queue if capacity is reached
         void GrowSize()
         {
             _capacity*=2;
@@ -56,6 +75,7 @@ namespace Queue
 
             _array = temp;
         }
+        //getting the first element in the queue
         public DataType Peek()
         {
             if(_head==_tail)
@@ -64,6 +84,7 @@ namespace Queue
             }
             return _array[_head];
         }
+        //removing the l
         public DataType Dequeue()
         {
             if(_head==_tail)
@@ -78,22 +99,5 @@ namespace Queue
             }
         }
 
-        public customQueue()
-        {
-            _capacity=4;
-            _array = new DataType[4];
-            _head = -1;
-            _tail = 0;
-        }
-
-        public customQueue(int size)
-        {
-            _capacity = size;
-            _array = new DataType[size];
-            _head = -1;
-            _tail = 0;
-        }
-        
-    
     }
 }

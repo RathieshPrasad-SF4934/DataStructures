@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dictionary
 {
+    //defines the type of each induvidual key element pair in the dictionary
     public class KeyValue<TKey, TValue>
     {
         public TKey Key { get; set; }
