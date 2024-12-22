@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace Dictionary
 {
-    public class customDictionary<TKey, TValue>:IEnumerable,IEnumerator
+    public class CustomDictionary<TKey, TValue>:IEnumerable,IEnumerator
     {
+        //States the element present in the dictionary
         private int _count;
+        //states the capacity of the dictionary
         private int _capacity;
+        //Get method for Count
         public int Count { get { return _count; } }
 
         private KeyValue<TKey, TValue>[] _array;
-
+        //Indexor for the dictionary
         public TValue this[TKey key]
         {
             get
@@ -28,20 +31,21 @@ namespace Dictionary
                 _array[position].Value = value;
             }
         }
-        public customDictionary()
+        //Default constructor for dictionary
+        public CustomDictionary()
         {
             _count = 0;
             _capacity = 4;
             _array = new KeyValue<TKey, TValue>[_capacity];
         }
-
-        public customDictionary(int size)
+        //Parameterized constructor for the dictionary
+        public CustomDictionary(int size)
         {
             _count = 0;
             _capacity = size;
             _array = new KeyValue<TKey, TValue>[_capacity];
         }
-
+        //Method for adding elements into the dictionary
         public void Add(TKey key, TValue value)
         {
             if (LinearSearch(key, out TValue value2) == -1)
@@ -58,6 +62,7 @@ namespace Dictionary
             }
 
         }
+        //Resizing the dictionary if the capacity is reached
         void GrowSize()
         {
             _capacity *= 2;
@@ -71,6 +76,7 @@ namespace Dictionary
 
 
         }
+        //Checking if the given key is present in the dictionary
         bool ContainsKey(TKey key)
         {
             if(LinearSearch(key,out TValue value)>-1)
@@ -79,6 +85,7 @@ namespace Dictionary
             }
             return false;
         }
+        //Checking if the given value is present in the dictionary
         bool ContainsValue(TValue value)
         {
             if(LinearSearchValue(value)>-1)
@@ -87,6 +94,7 @@ namespace Dictionary
             }
             return false;
         }
+        //Searching for a given value in the dictionary
         int LinearSearchValue(TValue value)
         {
             for(int i=0; i<_count; i++)
@@ -98,6 +106,7 @@ namespace Dictionary
             }
             return -1;
         }
+        //searching for a given key in the dictionary
         int LinearSearch(TKey key, out TValue value)
         {
             value = default(TValue);
@@ -111,14 +120,16 @@ namespace Dictionary
             }
             return -1;
         }
+        //Defining the enumerator for Foreach loop 
         int position;
+        //getting the tracking position
         public IEnumerator GetEnumerator()
         {
             position = -1;
 
             return (IEnumerator) this;
         }
-
+        //looping through the dictionary
         public bool MoveNext()
         {
             if(position<_count-1)
@@ -129,12 +140,12 @@ namespace Dictionary
             Reset();
             return false;
         }
-
+        //stopping the loop and resetting the tracking position
         public void Reset()
         {
             position=-1;
         }
-
+        //creating the current object
         public Object Current { get{return _array[position];}}
 
 
